@@ -29,6 +29,7 @@ def about():
     return render_template('about.html')
 
 @app.route('/secure-page/')
+@login_required
 def secure_page():
     """Render the website's secure page."""
     return render_template('secure_page.html')
@@ -62,7 +63,7 @@ def login():
                 login_user(user)
                 flash("You have successfully logged in!")
 
-            return redirect(url_for("secure-page"))  # they should be redirected to a secure-page route instead
+            return redirect(url_for("secure_page"))  # they should be redirected to a secure-page route instead
     return render_template("login.html", form=form)
 
 
